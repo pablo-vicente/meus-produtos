@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevIO.AppMvc", "src\DevIO.AppMvc\DevIO.AppMvc.csproj", "{2A6D663E-4D01-4779-94CC-06263354FB30}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevIO.Bussiness", "src\DevIO.Bussiness\DevIO.Bussiness.csproj", "{37E84918-E1DC-4BA3-8A3F-402A51D6742D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevIO.Infra", "src\DevIO.Infra\DevIO.Infra.csproj", "{DD32E532-C391-44B4-9BD3-EC9102F8A29E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2A6D663E-4D01-4779-94CC-06263354FB30}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2A6D663E-4D01-4779-94CC-06263354FB30}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2A6D663E-4D01-4779-94CC-06263354FB30}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2A6D663E-4D01-4779-94CC-06263354FB30}.Release|Any CPU.Build.0 = Release|Any CPU
+		{37E84918-E1DC-4BA3-8A3F-402A51D6742D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{37E84918-E1DC-4BA3-8A3F-402A51D6742D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{37E84918-E1DC-4BA3-8A3F-402A51D6742D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{37E84918-E1DC-4BA3-8A3F-402A51D6742D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DD32E532-C391-44B4-9BD3-EC9102F8A29E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DD32E532-C391-44B4-9BD3-EC9102F8A29E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DD32E532-C391-44B4-9BD3-EC9102F8A29E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DD32E532-C391-44B4-9BD3-EC9102F8A29E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
