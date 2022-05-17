@@ -1,4 +1,5 @@
 using System.Data.Entity;
+using System.Data.Entity.ModelConfiguration.Conventions;
 using DevIO.Bussiness.Models.Fornecedores;
 using DevIO.Bussiness.Models.Produtos;
 using DevIO.Infra.Data.Mappings;
@@ -9,7 +10,8 @@ namespace DevIO.Infra.Data.Context
     {
         public MeuDbContext() : base("DefaultConnection")
         {
-            
+            Configuration.ProxyCreationEnabled = false;
+            Configuration.LazyLoadingEnabled = false;
         }
         
         public DbSet<Produto> Produtos { get; set; }
@@ -18,6 +20,15 @@ namespace DevIO.Infra.Data.Context
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
+            modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
+            modelBuilder.Conventions.Remove<ManyToManyCascadeDeleteConvention>();
+
+            modelBuilder.Properties<string>()
+                .Configure(x => x
+                    .HasColumnType("varchar")
+                    .HasMaxLength(100));
+            
             modelBuilder.Configurations.Add(new FornecedorConfig());
             modelBuilder.Configurations.Add(new EnderecoConfig());
             modelBuilder.Configurations.Add(new ProdutoConfig());
