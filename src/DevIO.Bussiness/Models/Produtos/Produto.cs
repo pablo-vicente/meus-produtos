@@ -1,5 +1,6 @@
 ﻿using System;
 using DevIO.Bussiness.Core.Models;
+using DevIO.Bussiness.Models.Fornecedores;
 
 namespace DevIO.Bussiness.Models.Produtos
 {
@@ -12,5 +13,7 @@ namespace DevIO.Bussiness.Models.Produtos
         public decimal Valor { get; set; }
         public DateTime DataCadastro { get; set; }
         public bool Ativo { get; set; }
+        
+        public Fornecedor Fornecedor { get; set; }
     }
 }

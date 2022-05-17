@@ -12,6 +12,6 @@ namespace DevIO.Bussiness.Models.Fornecedores
         public string Cidade { get; set; }
         public string Estado { get; set; }
         
-        public Fornecedor FpFornecedor { get; set; }
+        public Fornecedor Fornecedor { get; set; }
     }
 }
