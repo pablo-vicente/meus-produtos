@@ -13,5 +13,6 @@ namespace DevIO.Bussiness.Models.Fornecedores
         public bool Ativo { get; set; }
         
         public ICollection<Produto> Produtos { get; set; }
+
     }
 }

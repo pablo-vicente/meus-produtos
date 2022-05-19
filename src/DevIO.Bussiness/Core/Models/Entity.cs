@@ -8,6 +8,6 @@ namespace DevIO.Bussiness.Core.Models
         {
             Id = new Guid();
         }
-        public Guid Id { get; }
+        public Guid Id { get; set; }
     }
 }

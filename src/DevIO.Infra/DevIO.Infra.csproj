@@ -50,6 +50,10 @@
         <Compile Include="Data\Mappings\EnderecoConfig.cs" />
         <Compile Include="Data\Mappings\FornecedorConfig.cs" />
         <Compile Include="Data\Mappings\ProdutoConfig.cs" />
+        <Compile Include="Data\Repositories\EnderecoRespository.cs" />
+        <Compile Include="Data\Repositories\FornecedorRepository.cs" />
+        <Compile Include="Data\Repositories\ProdutoRepository.cs" />
+        <Compile Include="Data\Repositories\Repository.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />
     </ItemGroup>
     <ItemGroup>
