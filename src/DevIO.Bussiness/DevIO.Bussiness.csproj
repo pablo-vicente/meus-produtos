@@ -32,6 +32,9 @@
         <WarningLevel>4</WarningLevel>
     </PropertyGroup>
     <ItemGroup>
+        <Reference Include="FluentValidation, Version=11.0.0.0, Culture=neutral, PublicKeyToken=7de548da2fbae0f0, processorArchitecture=MSIL">
+          <HintPath>..\..\packages\FluentValidation.11.0.1\lib\netstandard2.0\FluentValidation.dll</HintPath>
+        </Reference>
         <Reference Include="System" />
         <Reference Include="System.Core" />
         <Reference Include="System.Data" />
@@ -45,9 +48,13 @@
         <Compile Include="Models\Fornecedores\IEnderecoRespository.cs" />
         <Compile Include="Models\Fornecedores\IFornecedorRepository.cs" />
         <Compile Include="Models\Fornecedores\TipoFornecedor.cs" />
+        <Compile Include="Models\Fornecedores\Validations\FornecedorValidation.cs" />
         <Compile Include="Models\Produtos\IProdutoRepository.cs" />
         <Compile Include="Models\Produtos\Produto.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />
+    </ItemGroup>
+    <ItemGroup>
+      <None Include="packages.config" />
     </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
     <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
