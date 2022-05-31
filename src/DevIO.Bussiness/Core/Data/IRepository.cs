@@ -8,12 +8,12 @@ namespace DevIO.Bussiness.Core.Data
 {
     public interface IRepository<TEntity> : IDisposable where TEntity : Entity
     {
-        Task Adicionar(TEntity entity);
-        Task<TEntity> ObterPorId(Guid id);
-        Task<IEnumerable<Entity>> ObterTodos();
-        Task Atualizar(TEntity entity);
-        Task Remover(Guid id);
-        Task<IEnumerable<TEntity>> Buscar(Expression<Func<TEntity, bool>> predicate);
-        Task<int> SaveChanges();
+        Task AdicionarAsync(TEntity entity);
+        Task<TEntity> ObterPorIdAsync(Guid id);
+        Task<IEnumerable<Entity>> ObterTodosAsync();
+        Task AtualizarAsync(TEntity entity);
+        Task RemoverAsync(Guid id);
+        Task<IEnumerable<TEntity>> BuscarAsync(Expression<Func<TEntity, bool>> predicate);
+        Task<int> SaveChangesAsync();
     }
 }

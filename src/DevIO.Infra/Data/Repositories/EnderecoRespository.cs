@@ -8,7 +8,7 @@ namespace DevIO.Infra.Data.Repositories
     {
         public async Task<Endereco> ObterEnderecoPorFornecedor(Guid fornecedorId)
         {
-            return await ObterPorId(fornecedorId);
+            return await ObterPorIdAsync(fornecedorId);
         }
     }
 }

@@ -10,7 +10,7 @@ using DevIO.Infra.Data.Context;
 
 namespace DevIO.Infra.Data.Repositories
 {
-    public class Repository<TEntity> : IRepository<TEntity> where TEntity : Entity, new()
+    public abstract class Repository<TEntity> : IRepository<TEntity> where TEntity : Entity, new()
     {
 
         protected readonly MeuDbContext _dbContext;
@@ -22,46 +22,46 @@ namespace DevIO.Infra.Data.Repositories
             _dbSet = _dbContext.Set<TEntity>();
         }
         
-        public virtual async Task<TEntity> ObterPorId(Guid id)
+        public virtual async Task<TEntity> ObterPorIdAsync(Guid id)
         {
             return await _dbSet.FindAsync(id);
         }
 
-        public virtual async Task<IEnumerable<Entity>> ObterTodos()
+        public virtual async Task<IEnumerable<Entity>> ObterTodosAsync()
         {
             return await _dbSet.ToListAsync();
         }
         
-        public  async Task<IEnumerable<TEntity>> Buscar(Expression<Func<Entity, bool>> predicate)
+        public  async Task<IEnumerable<TEntity>> BuscarAsync(Expression<Func<TEntity, bool>> predicate)
         {
-            return (IEnumerable<TEntity>) await _dbSet
+            return await _dbSet
                 .AsNoTracking()
                 .Where(predicate)
                 .ToListAsync();
         }
         
-        public virtual async Task Adicionar(TEntity entity)
+        public virtual async Task AdicionarAsync(TEntity entity)
         {
             _dbSet.Add(entity);
-            await SaveChanges();
+            await SaveChangesAsync();
         }
-        public virtual async Task Atualizar(TEntity entity)
+        public virtual async Task AtualizarAsync(TEntity entity)
         {
             _dbContext.Entry(entity).State = EntityState.Modified;
-            await SaveChanges();
+            await SaveChangesAsync();
         }
 
-        public virtual async Task Remover(Guid id)
+        public virtual async Task RemoverAsync(Guid id)
         {
             _dbContext.Entry(new TEntity
             {
                 Id = id
             }).State = EntityState.Deleted;
             
-            await SaveChanges();
+            await SaveChangesAsync();
         }
 
-        public virtual async Task<int> SaveChanges()
+        public virtual async Task<int> SaveChangesAsync()
         {
             return await _dbContext.SaveChangesAsync();
         }

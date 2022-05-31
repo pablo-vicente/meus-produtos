@@ -43,6 +43,7 @@
     <ItemGroup>
         <Compile Include="Core\Data\IRepository.cs" />
         <Compile Include="Core\Models\Entity.cs" />
+        <Compile Include="Core\Services\BaseService.cs" />
         <Compile Include="Core\Validations\Documentos\CnpjValidacao.cs" />
         <Compile Include="Core\Validations\Documentos\CpfValidacao.cs" />
         <Compile Include="Core\Validations\Documentos\DigitoVerificador.cs" />
@@ -51,6 +52,8 @@
         <Compile Include="Models\Fornecedores\Fornecedor.cs" />
         <Compile Include="Models\Fornecedores\IEnderecoRespository.cs" />
         <Compile Include="Models\Fornecedores\IFornecedorRepository.cs" />
+        <Compile Include="Models\Fornecedores\Services\FornecedorService.cs" />
+        <Compile Include="Models\Fornecedores\Services\IFornecedorService.cs" />
         <Compile Include="Models\Fornecedores\TipoFornecedor.cs" />
         <Compile Include="Models\Fornecedores\Validations\EnderecoValidation.cs" />
         <Compile Include="Models\Fornecedores\Validations\FornecedorValidation.cs" />

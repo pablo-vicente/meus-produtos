@@ -7,7 +7,7 @@ namespace DevIO.Infra.Data.Repositories
 {
     public class FornecedorRepository : Repository<Fornecedor>, IFornecedorRepository
     {
-        public async Task<Fornecedor> ObterFornecedorEndereco(Guid id)
+        public async Task<Fornecedor> ObterFornecedorEnderecoAsync(Guid id)
         {
             return await _dbSet
                 .AsNoTracking()
@@ -15,7 +15,7 @@ namespace DevIO.Infra.Data.Repositories
                 .FirstOrDefaultAsync(x => x.Id == id);
         }
 
-        public async Task<Fornecedor> ObterFornecedorProdutosEndereco(Guid id)
+        public async Task<Fornecedor> ObterFornecedorProdutosEnderecoAsync(Guid id)
         {
             return await _dbSet
                 .AsNoTracking()
