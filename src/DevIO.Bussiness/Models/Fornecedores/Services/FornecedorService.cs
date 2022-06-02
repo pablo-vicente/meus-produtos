@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using DevIO.Bussiness.Core.Services;
 using DevIO.Bussiness.Models.Fornecedores.Validations;
+using DevIO.Bussiness.Notificacoes;
 
 namespace DevIO.Bussiness.Models.Fornecedores.Services
 {
@@ -11,7 +12,10 @@ namespace DevIO.Bussiness.Models.Fornecedores.Services
         private readonly IFornecedorRepository _fornecedorRepository;
         private readonly IEnderecoRespository _enderecoRespository;
 
-        public FornecedorService(IFornecedorRepository fornecedorRepository, IEnderecoRespository enderecoRespository)
+        public FornecedorService(
+            IFornecedorRepository fornecedorRepository, 
+            IEnderecoRespository enderecoRespository,
+            INotificacor notificacor) : base(notificacor)
         { 
             _fornecedorRepository = fornecedorRepository;
             _enderecoRespository = enderecoRespository;
@@ -34,7 +38,12 @@ namespace DevIO.Bussiness.Models.Fornecedores.Services
         {
             var fornecedorAtual = await _fornecedorRepository.BuscarAsync(f => f.Documento == fornecedor.Documento && f.Id != fornecedor.Id);
 
-            return fornecedorAtual.Any();
+            if (!fornecedorAtual.Any())
+                return false;
+            
+            Notificar("Já existe um fornecedor com este documento cadastrado.");
+            
+            return true;
         }
 
         public async Task AtualizarAsync(Fornecedor fornecedor)
@@ -50,9 +59,12 @@ namespace DevIO.Bussiness.Models.Fornecedores.Services
         public async Task RemoverAsync(Guid id)
         {
             var fornecedor = await _fornecedorRepository.ObterFornecedorProdutosEnderecoAsync(id);
-            
-            if(fornecedor.Produtos.Any())
+
+            if (fornecedor.Produtos.Any())
+            {
+                Notificar("Fornecedor possui produtos cadastrados.");
                 return;
+            }
 
             if (fornecedor.Endereco is null)
             {

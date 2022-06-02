@@ -6,6 +6,7 @@ using DevIO.Bussiness.Models.Fornecedores.Validations;
 using DevIO.Bussiness.Models.Produtos;
 using DevIO.Bussiness.Models.Produtos.Services;
 using DevIO.Bussiness.Models.Produtos.Validations;
+using DevIO.Bussiness.Notificacoes;
 
 namespace DevIO.Bussiness.Models.Fornecedores.Services
 {
@@ -13,7 +14,9 @@ namespace DevIO.Bussiness.Models.Fornecedores.Services
     {
         private readonly IProdutoRepository _produtoRepository;
 
-        public ProdutoService(IProdutoRepository produtoRepository)
+        public ProdutoService(
+            IProdutoRepository produtoRepository,
+            INotificacor notificacor) : base(notificacor)
         { 
             _produtoRepository = produtoRepository;
         }
