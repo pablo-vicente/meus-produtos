@@ -174,7 +174,12 @@
         <Content Include="Scripts\jquery.validate.unobtrusive.js" />
         <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
         <Content Include="Scripts\modernizr-2.8.3.js" />
+        <Content Include="Views\Fornecedores\Create.cshtml" />
+        <Content Include="Views\Fornecedores\Delete.cshtml" />
+        <Content Include="Views\Fornecedores\Details.cshtml" />
+        <Content Include="Views\Fornecedores\Edit.cshtml" />
         <Content Include="Views\Fornecedores\index.cshtml" />
+        <Content Include="Views\Fornecedores\_Endereco.cshtml" />
         <Content Include="Web.config" />
         <Content Include="Web.Debug.config">
             <DependentUpon>Web.config</DependentUpon>

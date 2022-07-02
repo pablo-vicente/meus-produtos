@@ -1,4 +1,4 @@
-@model IEnumerable<DevIO.AppMvc.ViewModels.FornecedorViewModel>
+﻿@model IEnumerable<DevIO.AppMvc.ViewModels.FornecedorViewModel>
 
 @{
     Layout = "../Shared/_Layout.cshtml";
@@ -15,7 +15,7 @@
     <hr>
 </p>
 
-<table>
+<table class="table table-hover">
     <thead>
     <tr>
         <th>
@@ -38,7 +38,7 @@
                 @Html.DisplayFor(modelItem => item.Nome)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Documento)
+                @this.FormatarDocumento(item.TipoFornecedor, item.Documento)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Ativo)
