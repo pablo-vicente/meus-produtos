@@ -1,0 +1,54 @@
+@model IEnumerable<DevIO.AppMvc.ViewModels.FornecedorViewModel>
+
+@{
+    Layout = "../Shared/_Layout.cshtml";
+    ViewBag.Title = "Lista de Fornecedores Forncedores";
+}
+
+
+<h1>@ViewBag.Title</h1>
+
+<p>
+    <a class="btn btn-info" href="@Url.Action("Create", "Fornecedores")">
+        Novo Fornecedor
+    </a>
+    <hr>
+</p>
+
+<table>
+    <thead>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(x=>x.Nome);
+        </th>
+        <th>
+            @Html.DisplayNameFor(x=>x.Documento);
+        </th>
+        <th>
+            @Html.DisplayNameFor(x=>x.Ativo);
+        </th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Documento)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Ativo)
+            </td>
+            <td class="text-right">
+                <a class="btn btn-warning" href="@Url.Action("Details", "Fornecedores", new {id = item.Id})"><span class="glyphicon glyphicon-search"></span></a>
+                <a class="btn btn-info" href="@Url.Action("Edit", "Fornecedores", new {id = item.Id})"><span class="glyphicon glyphicon-pencil"></span></a>
+                <a class="btn btn-danger" href="@Url.Action("Delete", "Fornecedores", new {id = item.Id})"><span class="glyphicon glyphicon-trash"></span></a>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
