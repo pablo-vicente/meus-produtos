@@ -1,4 +1,3 @@
-using System.Linq;
 using DevIO.Bussiness.Core.Models;
 using DevIO.Bussiness.Notificacoes;
 using FluentValidation;
@@ -8,11 +7,11 @@ namespace DevIO.Bussiness.Core.Services
 {
     public abstract class BaseService
     {
-        private readonly INotificacor _notificacor;
+        private readonly INotificador _notificador;
 
-        protected BaseService(INotificacor notificacor)
+        protected BaseService(INotificador notificador)
         {
-            _notificacor = notificacor;
+            _notificador = notificador;
         }
 
         protected void Notificar(ValidationResult validationResult)
@@ -23,7 +22,7 @@ namespace DevIO.Bussiness.Core.Services
         
         protected void Notificar(string mensagem)
         {
-            _notificacor.Handle(new Notificacao(mensagem));
+            _notificador.Handle(new Notificacao(mensagem));
         }
 
         protected bool ExecutarValidacao<TV, TE>(TV validacao, TE entidade)

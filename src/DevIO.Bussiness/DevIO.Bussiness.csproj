@@ -62,7 +62,7 @@
         <Compile Include="Models\Produtos\Services\ProdutoService.cs" />
         <Compile Include="Models\Produtos\Services\IProdutoService.cs" />
         <Compile Include="Models\Produtos\Validations\ProdutoValidation.cs" />
-        <Compile Include="Notificacoes\INotificacor.cs" />
+        <Compile Include="Notificacoes\INotificador.cs" />
         <Compile Include="Notificacoes\Notificacao.cs" />
         <Compile Include="Notificacoes\Notificador.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />

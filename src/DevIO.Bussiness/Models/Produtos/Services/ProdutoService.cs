@@ -16,7 +16,7 @@ namespace DevIO.Bussiness.Models.Fornecedores.Services
 
         public ProdutoService(
             IProdutoRepository produtoRepository,
-            INotificacor notificacor) : base(notificacor)
+            INotificador notificador) : base(notificador)
         { 
             _produtoRepository = produtoRepository;
         }

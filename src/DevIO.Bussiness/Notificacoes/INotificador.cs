@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 namespace DevIO.Bussiness.Notificacoes
 {
-    public interface INotificacor
+    public interface INotificador
     {
         bool TemNotificacao();
         IEnumerable<Notificacao> ObterNotificacoes();

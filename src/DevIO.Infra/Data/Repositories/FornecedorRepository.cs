@@ -2,11 +2,14 @@ using System;
 using System.Data.Entity;
 using System.Threading.Tasks;
 using DevIO.Bussiness.Models.Fornecedores;
+using DevIO.Infra.Data.Context;
 
 namespace DevIO.Infra.Data.Repositories
 {
     public class FornecedorRepository : Repository<Fornecedor>, IFornecedorRepository
     {
+        public FornecedorRepository(MeuDbContext dbContext) : base(dbContext) { }
+        
         public async Task<Fornecedor> ObterFornecedorEnderecoAsync(Guid id)
         {
             return await _dbSet

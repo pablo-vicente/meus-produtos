@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace DevIO.Bussiness.Notificacoes
 {
-    public class Notificador : INotificacor
+    public class Notificador : INotificador
     {
         private readonly IList<Notificacao> _notificacoes;
 

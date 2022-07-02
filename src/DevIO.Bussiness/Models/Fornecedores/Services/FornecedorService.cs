@@ -15,7 +15,7 @@ namespace DevIO.Bussiness.Models.Fornecedores.Services
         public FornecedorService(
             IFornecedorRepository fornecedorRepository, 
             IEnderecoRespository enderecoRespository,
-            INotificacor notificacor) : base(notificacor)
+            INotificador notificador) : base(notificador)
         { 
             _fornecedorRepository = fornecedorRepository;
             _enderecoRespository = enderecoRespository;

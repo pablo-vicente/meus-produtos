@@ -5,11 +5,14 @@ using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
 using DevIO.Bussiness.Models.Produtos;
+using DevIO.Infra.Data.Context;
 
 namespace DevIO.Infra.Data.Repositories
 {
     public class ProdutoRepository : Repository<Produto>, IProdutoRepository
     {
+        public ProdutoRepository(MeuDbContext dbContext) : base(dbContext) { }
+        
         public async Task<IEnumerable<Produto>> ObterProdutosFornecedores()
         {
             return await _dbSet
