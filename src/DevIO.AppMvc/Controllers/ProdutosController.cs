@@ -9,7 +9,7 @@ using DevIO.Bussiness.Models.Produtos.Services;
 
 namespace DevIO.AppMvc.Controllers
 {
-    public class ProdutosController : Controller
+    public class ProdutosController : BaseController
     {
         private readonly IProdutoRepository _produtoRepository;
         private readonly IProdutoService _produtoService;
