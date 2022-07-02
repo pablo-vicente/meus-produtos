@@ -23,6 +23,19 @@ namespace DevIO.AppMvc.Controllers
             _fornecedorService = fornecedorService;
             _mapper = mapper;
         }
+        
+        [Route("dados-do-fornecedor/{id:guid}")]
+        [HttpGet]
+        public async Task<ActionResult> Details(Guid id)
+        {
+            var fornecedor = await _fornecedorRepository.ObterFornecedorEnderecoAsync(id);
+
+            if (fornecedor is null)
+                return HttpNotFound();
+            var produtoViewModel = _mapper.Map<Fornecedor>(fornecedor);
+            
+            return View(produtoViewModel);
+        }
 
         [HttpGet]
         [Route("lista-fornecedores")]
@@ -78,7 +91,7 @@ namespace DevIO.AppMvc.Controllers
         
         [HttpPost, ActionName("Delete")]
         [Route("excluir-fornecedor/{id:guid}")]
-        public async Task<ActionResult> DeleteConfimed(Guid id)
+        public async Task<ActionResult> DeleteConfirmed(Guid id)
         {
             var fornecedor = await _fornecedorRepository.ObterPorIdAsync(id);
             if (fornecedor is null)
