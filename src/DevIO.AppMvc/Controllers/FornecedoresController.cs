@@ -122,6 +122,20 @@ namespace DevIO.AppMvc.Controllers
         }
         
         [HttpGet]
+        [Route("obter-endereco-fornecedor/{id:guid}")]
+        public async Task<ActionResult> ObterEndereco(Guid id)
+        {
+            var fornecedor =  await _fornecedorRepository.ObterFornecedorEnderecoAsync(id);
+
+            if (fornecedor is null)
+                return HttpNotFound();
+            
+            var fornecedorViewModel = _mapper.Map<FornecedorViewModel>(fornecedor) ;
+
+            return PartialView("_DetalhesEndereco", fornecedorViewModel);
+        }
+        
+        [HttpGet]
         [Route("atualizar-endereco-fornecedor/{id:guid}")]
         public async Task<ActionResult> AtualizarEndereco(Guid id)
         {
@@ -140,5 +154,29 @@ namespace DevIO.AppMvc.Controllers
             return PartialView("_AtualizarEndereco", endereco);
         }
         
+        [HttpPost]
+        [Route("atualizar-endereco-fornecedor/{id:guid}")]
+        public async Task<ActionResult> AtualizarEndereco(FornecedorViewModel fornecedorViewModel)
+        {
+            ModelState.Remove("Nome");
+            ModelState.Remove("Documento");
+
+            if (!ModelState.IsValid)
+                return PartialView("_AtualizarEndereco", fornecedorViewModel);
+
+            var fornecedor = _mapper.Map<Fornecedor>(fornecedorViewModel);
+            await _fornecedorService.AtualizarAsync(fornecedor);
+
+            var url = Url.Action("ObterEndereco", "Fornecedores", new
+            {
+                id = fornecedorViewModel.Endereco.FornecedorId
+            });
+
+            return Json(new
+            {
+                success = true,
+                url
+            });
+        }
     }
 }
