@@ -1,4 +1,6 @@
 using System;
+using System.Net.Http;
+using System.Web;
 using System.Web.Mvc;
 using DevIO.Bussiness.Models.Fornecedores;
 
@@ -19,6 +21,17 @@ namespace DevIO.AppMvc.Extensions
                 default:
                     throw new ArgumentOutOfRangeException(nameof(tipoFornecedor), tipoFornecedor, null);
             }
+        }
+
+        public static bool ExibirNaUrl(this WebViewPage value, Guid id)
+        {
+            var uriHelper = new UrlHelper(HttpContext.Current.Request.RequestContext);
+            var urlTarget = uriHelper.Action("Edit", "Fornecedores", new {id});
+            var urlTarget2 = uriHelper.Action("ObterEndereco", "Fornecedores", new {id});
+
+            var urlEmUso = HttpContext.Current.Request.Path;
+
+            return urlTarget == urlEmUso || urlTarget == urlTarget2;
         }
     }
 }

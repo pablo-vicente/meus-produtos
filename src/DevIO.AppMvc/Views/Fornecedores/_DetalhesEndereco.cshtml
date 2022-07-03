@@ -1,4 +1,5 @@
-﻿@model DevIO.AppMvc.ViewModels.FornecedorViewModel
+﻿@using DevIO.AppMvc.Extensions
+@model DevIO.AppMvc.ViewModels.FornecedorViewModel
 
 <div style="padding-top: 50px">
     <div>
@@ -59,10 +60,17 @@
                     @Html.DisplayFor(model => model.Endereco.Estado)
                 </td>
                 <td>
-                    @* @if (this.ExibirNaURL(Model.Id)) *@
-                    @* { *@
-                    <a class="btn btn-info" href="@Url.Action("AtualizarEndereco", "Fornecedores", new {id = Model.Id})" data-modal=""><spam class="glyphicon glyphicon-pencil"></spam> </a>
-                    @* } *@
+                    @if (this.ExibirNaUrl(Model.Id))
+                    {
+                        <a
+                            class="btn btn-info"
+                            href="@Url.Action("AtualizarEndereco", "Fornecedores", new {id = Model.Id})"
+                            data-modal="">
+                            
+                            <spam class="glyphicon glyphicon-pencil">
+                            </spam>
+                        </a>
+                    }
                 </td>
             </tr>
         </table>
