@@ -1,0 +1,103 @@
+﻿@model DevIO.AppMvc.ViewModels.ProdutoViewModel
+
+@{
+    ViewBag.Title = "Novo Produto";
+}
+
+<h2>@ViewBag.Title </h2>
+<hr />
+
+@using (Html.BeginForm("Create", "Produtos", FormMethod.Post, new { enctype = "multipart/form-data", id = "produtoForm" }))
+{
+    @Html.AntiForgeryToken()
+<div class="form-horizontal">
+
+    @Html.Partial("_ErrorSummary")
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.FornecedorId, new { @class = "control-label col-md-2" })
+        <div class="col-md-3">
+
+            @Html.DropDownListFor(model => model.FornecedorId,
+                new SelectList(Model.Fornecedores, "Id", "Nome"),
+                string.Empty, new { @class = "form-control" })
+
+            @Html.ValidationMessageFor(model => model.FornecedorId, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Nome, new { @class = "control-label col-md-2" })
+        <div class="col-md-3">
+            @Html.EditorFor(model => model.Nome, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Nome, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Descricao, new { @class = "control-label col-md-2" })
+        <div class="col-md-3">
+            @Html.TextAreaFor(model => model.Descricao, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Descricao, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.ImagemUpload, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-3">
+
+            <div class="input-group">
+                <input type="text" name="ImagemNome" id="ImagemNome" class="form-control">
+                <span class="input-group-btn">
+                    <label class="btn btn-primary" for="ImagemUpload">
+                        <input class="form-control" id="ImagemUpload" name="ImagemUpload" type="file" style="display: none"
+                               onchange="$('#ImagemNome').val(this.files[0].name); $('#ImagemUpload').blur();">
+                        <span class="glyphicon glyphicon-cloud-upload"></span>
+                    </label>
+                </span>
+            </div>
+
+            @Html.ValidationMessage("ImagemNome", "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Valor, new { @class = "control-label col-md-2" })
+        <div class="col-md-3">
+            @Html.TextBoxFor(model => model.Valor, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Valor, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Ativo, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-3">
+            @Html.CheckBoxFor(model => model.Ativo, new { htmlAttributes = new { @class = "form-control" } })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-3">
+            <input type="submit" value="Cadastrar" class="btn btn-primary" />
+            <a href="@Url.Action("Index", "Produtos")" class="btn btn-info">Voltar</a>
+        </div>
+    </div>
+</div>
+}
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    
+    <script>
+        $('#produtoForm').submit(function () {
+            const valor = $('#Valor').val();
+            $('#Valor').val(valor.replace(".",""));
+        });
+
+        $("#Valor").attr("data-val-number", "Moeda em formato inválido");
+
+        $("#ImagemNome").attr("data-val", "true");
+        $("#ImagemNome").attr("data-val-required", "Preencha o campo Imagem");
+    </script>
+}

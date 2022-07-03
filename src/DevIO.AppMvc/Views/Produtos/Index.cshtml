@@ -1,0 +1,23 @@
+﻿@using DevIO.AppMvc.Extensions
+@model IEnumerable<DevIO.AppMvc.ViewModels.ProdutoViewModel>
+
+@{
+    ViewBag.Title = "Lista de Produtos";
+}
+
+<h1><b>@ViewBag.Title</b></h1>
+<hr />
+
+@{
+    if (this.PermitirExibicao("Produto", "Adicionar"))
+    {
+        <p>
+            <a class="btn btn-info" href="@Url.Action("Create", "Produtos")">
+                Novo Produto
+            </a>
+        </p>
+    }
+}
+
+
+@Html.Partial("_ListaProdutos")
