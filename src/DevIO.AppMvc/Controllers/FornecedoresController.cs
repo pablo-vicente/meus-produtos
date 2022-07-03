@@ -32,7 +32,7 @@ namespace DevIO.AppMvc.Controllers
 
             if (fornecedor is null)
                 return HttpNotFound();
-            var produtoViewModel = _mapper.Map<Fornecedor>(fornecedor);
+            var produtoViewModel = _mapper.Map<FornecedorViewModel>(fornecedor);
             
             return View(produtoViewModel);
         }
