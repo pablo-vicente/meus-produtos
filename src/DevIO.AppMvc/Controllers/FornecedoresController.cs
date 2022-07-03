@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 using AutoMapper;
@@ -42,7 +43,7 @@ namespace DevIO.AppMvc.Controllers
         public async Task<ActionResult> Index()
         {
             var fornecedores = await _fornecedorRepository.ObterTodosAsync();
-            var fornecedoresViewModel = _mapper.Map<FornecedorViewModel>(fornecedores);
+            var fornecedoresViewModel = _mapper.Map<IEnumerable<FornecedorViewModel>>(fornecedores);
             
             return View(fornecedoresViewModel);
         }
