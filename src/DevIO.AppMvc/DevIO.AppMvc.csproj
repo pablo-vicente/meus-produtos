@@ -180,6 +180,8 @@
         <Content Include="Views\Fornecedores\Details.cshtml" />
         <Content Include="Views\Fornecedores\Edit.cshtml" />
         <Content Include="Views\Fornecedores\index.cshtml" />
+        <Content Include="Views\Fornecedores\_AtualizarEndereco.cshtml" />
+        <Content Include="Views\Fornecedores\_DetalhesEndereco.cshtml" />
         <Content Include="Views\Fornecedores\_Endereco.cshtml" />
         <Content Include="Web.config" />
         <Content Include="Web.Debug.config">

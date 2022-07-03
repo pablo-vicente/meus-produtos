@@ -121,5 +121,24 @@ namespace DevIO.AppMvc.Controllers
             return RedirectToAction("Index");
         }
         
+        [HttpPost]
+        [Route("atualizar-endereco-fornecedor/{id:guid}")]
+        public async Task<ActionResult> AtualizarEndereco(Guid id)
+        {
+            var fornecedor =  await _fornecedorRepository.ObterFornecedorEnderecoAsync(id);
+
+            if (fornecedor is null)
+                return HttpNotFound();
+            
+            var fornecedorViewModel = _mapper.Map<FornecedorViewModel>(fornecedor) ;
+
+            var endereco = new FornecedorViewModel
+            {
+                Endereco = fornecedorViewModel.Endereco
+            };
+
+            return PartialView("_AtualizarEndereco", endereco);
+        }
+        
     }
 }
