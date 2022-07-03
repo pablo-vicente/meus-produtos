@@ -121,7 +121,7 @@ namespace DevIO.AppMvc.Controllers
             return RedirectToAction("Index");
         }
         
-        [HttpPost]
+        [HttpGet]
         [Route("atualizar-endereco-fornecedor/{id:guid}")]
         public async Task<ActionResult> AtualizarEndereco(Guid id)
         {
