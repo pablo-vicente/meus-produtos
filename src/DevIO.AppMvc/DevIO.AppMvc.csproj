@@ -137,6 +137,7 @@
     <ItemGroup>
         <Compile Include="App_Start\AutoMappingConfig.cs" />
         <Compile Include="App_Start\BundleConfig.cs" />
+        <Compile Include="App_Start\CultureConfig.cs" />
         <Compile Include="App_Start\DependencyInjectionConfig.cs" />
         <Compile Include="App_Start\FilterConfig.cs" />
         <Compile Include="App_Start\RouteConfig.cs" />
@@ -144,6 +145,7 @@
         <Compile Include="Controllers\FornecedoresController.cs" />
         <Compile Include="Controllers\HomeController.cs" />
         <Compile Include="Controllers\ProdutosController.cs" />
+        <Compile Include="Extensions\MoedaAttribute.cs" />
         <Compile Include="Extensions\RazorExtensions.cs" />
         <Compile Include="Global.asax.cs">
             <DependentUpon>Global.asax</DependentUpon>
