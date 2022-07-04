@@ -6,6 +6,12 @@ namespace DevIO.Bussiness.Models.Produtos
 {
     public class Produto : Entity
     {
+
+        public Produto()
+        {
+            DataCadastro = DateTime.Now;
+            Ativo = true;
+        }
         public Guid FornecedorId { get; set; }
         public string Nome { get; set; }
         public string Descricao { get; set; }
