@@ -192,6 +192,7 @@
         <Content Include="Views\Produtos\Edit.cshtml" />
         <Content Include="Views\Produtos\Index.cshtml" />
         <Content Include="Views\Produtos\_ListaProdutos.cshtml" />
+        <Content Include="Views\Shared\_ErrorSummary.cshtml" />
         <Content Include="Web.config" />
         <Content Include="Web.Debug.config">
             <DependentUpon>Web.config</DependentUpon>
