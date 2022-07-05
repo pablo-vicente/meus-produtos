@@ -27,6 +27,9 @@ namespace DevIO.AppMvc.ViewModels
         [StringLength(1000, ErrorMessage = "O Campo {0} precisa ter entre {2} e {1} caracters", MinimumLength = 2)]
         public string Descricao { get; set; }
         
+        [DisplayName("Imagem")]
+        public string Imagem { get; set; }
+        
         [DisplayName("Imagem do produto")]
         public HttpPostedFileBase ImagemUpload { get; set; }
         

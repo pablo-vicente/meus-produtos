@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Threading.Tasks;
+using System.Web;
 using System.Web.Mvc;
 using AutoMapper;
 using DevIO.AppMvc.ViewModels;
@@ -77,7 +79,12 @@ namespace DevIO.AppMvc.Controllers
             produtoViewModel = await PopularForncedores(produtoViewModel);
             if (!ModelState.IsValid) 
                 return View(produtoViewModel);
-            
+
+            var imgPrefixo = Guid.NewGuid() + "_";
+            if(!UploadImage(produtoViewModel.ImagemUpload, imgPrefixo))
+                return View(produtoViewModel);
+
+            produtoViewModel.Imagem = imgPrefixo + produtoViewModel.ImagemUpload.FileName;
             var produto = _mapper.Map<Produto>(produtoViewModel);
             await _produtoService.AdicionarAsync(produto);
 
@@ -133,6 +140,26 @@ namespace DevIO.AppMvc.Controllers
             
             await _produtoService.RemoverAsync(id);
             return RedirectToAction("Index");
+        }
+
+        private bool UploadImage(HttpPostedFileBase fileBase, string imgPrefix)
+        {
+            if (fileBase is null || fileBase.ContentLength == 0)
+            {
+                ModelState.AddModelError(string.Empty, "Imagem em formato inválido!");
+                return false;
+            }
+
+            var path = Path.Combine(HttpContext.Server.MapPath("~/Imagens"), imgPrefix + fileBase.FileName);
+
+            if (System.IO.File.Exists(path))
+            {
+                ModelState.AddModelError(string.Empty, "Já existe um arquivo com este nome!");
+                return false;
+            }
+            
+            fileBase.SaveAs(path);
+            return true;
         }
     }
 }
