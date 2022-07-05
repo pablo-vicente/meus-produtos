@@ -80,11 +80,11 @@ namespace DevIO.AppMvc.Controllers
             if (!ModelState.IsValid) 
                 return View(produtoViewModel);
 
-            var imgPrefixo = Guid.NewGuid() + "_";
-            if(!UploadImage(produtoViewModel.ImagemUpload, imgPrefixo))
+            var upload = UploadImagem(produtoViewModel.ImagemUpload);
+            if(!upload.success)
                 return View(produtoViewModel);
 
-            produtoViewModel.Imagem = imgPrefixo + produtoViewModel.ImagemUpload.FileName;
+            produtoViewModel.Imagem = upload.path;
             var produto = _mapper.Map<Produto>(produtoViewModel);
             await _produtoService.AdicionarAsync(produto);
 
@@ -112,6 +112,26 @@ namespace DevIO.AppMvc.Controllers
             if (!ModelState.IsValid)
                 return View(produtoViewModel);
 
+            var produtoAtualizacao1 = await _produtoRepository.ObterProdutoFornecedor(produtoViewModel.Id);
+            var produtoAtualizacao = _mapper.Map<ProdutoViewModel>(produtoAtualizacao1);
+            produtoViewModel.Imagem = produtoAtualizacao.Imagem;
+
+            if (produtoViewModel.ImagemUpload != null)
+            {
+                var upload = UploadImagem(produtoViewModel.ImagemUpload);
+                if (!upload.success)
+                    return View(produtoViewModel);
+
+                produtoAtualizacao.Imagem = upload.path;
+            }
+
+            produtoAtualizacao.Nome = produtoViewModel.Nome;
+            produtoAtualizacao.Descricao = produtoViewModel.Descricao;
+            produtoAtualizacao.Valor = produtoViewModel.Valor;
+            produtoAtualizacao.Ativo = produtoViewModel.Ativo;
+            produtoAtualizacao.FornecedorId = produtoViewModel.FornecedorId;
+            produtoAtualizacao.Fornecedor = produtoViewModel.Fornecedor;
+            
             var produto = _mapper.Map<Produto>(produtoViewModel);
             await _produtoService.AtualizarAsync(produto);
 
@@ -142,24 +162,25 @@ namespace DevIO.AppMvc.Controllers
             return RedirectToAction("Index");
         }
 
-        private bool UploadImage(HttpPostedFileBase fileBase, string imgPrefix)
+        private (bool success, string path) UploadImagem(HttpPostedFileBase fileBase)
         {
             if (fileBase is null || fileBase.ContentLength == 0)
             {
                 ModelState.AddModelError(string.Empty, "Imagem em formato inválido!");
-                return false;
+                return (false, string.Empty);
             }
 
-            var path = Path.Combine(HttpContext.Server.MapPath("~/Imagens"), imgPrefix + fileBase.FileName);
+            var imgPrefixo = Guid.NewGuid() + "_";
+            var path = Path.Combine(HttpContext.Server.MapPath("~/Imagens"), imgPrefixo + fileBase.FileName);
 
             if (System.IO.File.Exists(path))
             {
                 ModelState.AddModelError(string.Empty, "Já existe um arquivo com este nome!");
-                return false;
+                return (false, string.Empty);
             }
             
             fileBase.SaveAs(path);
-            return true;
+            return (true, path);
         }
     }
 }
