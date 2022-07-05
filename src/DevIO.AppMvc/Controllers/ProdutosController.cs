@@ -9,6 +9,7 @@ using DevIO.AppMvc.ViewModels;
 using DevIO.Bussiness.Models.Fornecedores;
 using DevIO.Bussiness.Models.Produtos;
 using DevIO.Bussiness.Models.Produtos.Services;
+using DevIO.Bussiness.Notificacoes;
 
 namespace DevIO.AppMvc.Controllers
 {
@@ -23,7 +24,8 @@ namespace DevIO.AppMvc.Controllers
             IProdutoRepository produtoRepository, 
             IFornecedorRepository fornecedorRepository,
             IProdutoService produtoService, 
-            IMapper mapper)
+            IMapper mapper,
+            INotificador notificador) : base(notificador)
         {
             _produtoRepository = produtoRepository;
             _produtoService = produtoService;
