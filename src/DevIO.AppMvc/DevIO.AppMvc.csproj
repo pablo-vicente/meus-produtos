@@ -145,6 +145,7 @@
         <Compile Include="Controllers\FornecedoresController.cs" />
         <Compile Include="Controllers\HomeController.cs" />
         <Compile Include="Controllers\ProdutosController.cs" />
+        <Compile Include="Extensions\CustomAuthorization.cs" />
         <Compile Include="Extensions\MoedaAttribute.cs" />
         <Compile Include="Extensions\RazorExtensions.cs" />
         <Compile Include="Global.asax.cs">
